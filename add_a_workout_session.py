@@ -3,11 +3,11 @@ import mysql.connector
 def add_a_workout_session(member_id, date, duration_minutes, calories_burned):
     try:
         # Establish database connection
-        cnx = mysql.connector.connect(user='root', password='That08er',
-                                      host='localhost', database='MyCodingTempleData')
+        db_conn = mysql.connector.connect(user='root', password='XyZ$9#1@7QwEeTy',
+                                      host='localhost', database='Workout_Session')
 
         # Create cursor object
-        cursor = cnx.cursor()
+        cursor = db_conn.cursor()
 
         # Validation for member ID
         cursor.execute("SELECT * FROM Members WHERE id = %s", (member_id,))
@@ -21,7 +21,7 @@ def add_a_workout_session(member_id, date, duration_minutes, calories_burned):
                        (member_id, date, duration_minutes, calories_burned))
 
         # Commit changes
-        cnx.commit()
+        db_conn.commit()
 
         print("WORKOUT SESSION ADDED!")
 
@@ -31,6 +31,6 @@ def add_a_workout_session(member_id, date, duration_minutes, calories_burned):
     finally:
         # Close cursor and connection
         cursor.close()
-        cnx.close()
+        db_conn.close()
 
 add_workout_session(1, '2024-05-31', 120, 770)
