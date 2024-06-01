@@ -4,11 +4,11 @@ from mysql.connector import errorcode
 def add_member(id, name, age, trainer_id):
     try:
         # Create database connection
-        cnx = mysql.connector.connect(user='root', password='That08er',
-                                      host='localhost', database='mycodingtempledata')
+        db_conn = mysql.connector.connect(user='root', password='XyZ$9#1@7QwEeTy',
+                                      host='localhost', database='Workout_Session')
 
         # Create cursor object
-        with cnx.cursor() as cursor:
+        with db_conn.cursor() as cursor:
             # Validation for Member ID
             cursor.execute("SELECT * FROM Members WHERE id = %s", (id,))
             existing_member = cursor.fetchone()
@@ -21,7 +21,7 @@ def add_member(id, name, age, trainer_id):
                            (id, name, age, trainer_id))
 
             # Commit changes
-            cnx.commit()
+            db_conn.commit()
 
             print("NEW MEMBER ADDED!")
 
@@ -34,8 +34,8 @@ def add_member(id, name, age, trainer_id):
             print(f"Error: {err}")
     finally:
         # Closes connection
-        if cnx.is_connected():
-            cnx.close()
+        if db_conn.is_connected():
+            db_conn.close()
 
 
 add_member(1, "Jimmy Chew", 20, 2)
