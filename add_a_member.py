@@ -16,7 +16,7 @@ def add_member(id, name, age, trainer_id):
                 print("ERROR: MEMBER ID ALREADY EXISTS!")
                 return
 
-            # Insert the new member into database
+            # Insert new member into database
             cursor.execute("INSERT INTO Members (id, name, age, trainer_id) VALUES (%s, %s, %s, %s)",
                            (id, name, age, trainer_id))
 
@@ -27,11 +27,11 @@ def add_member(id, name, age, trainer_id):
 
     except mysql.connector.Error as err:
         if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
-            print("Error: Access denied, check your username or password.")
+            print("ERRPR: CHECK USERNAME OR PASSWORD!")
         elif err.errno == errorcode.ER_BAD_DB_ERROR:
             print("ERROR: DATABASE DOES NOT EXIST!")
         else:
-            print(f"Error: {err}")
+            print(f"ERROR: {err}")
     finally:
         # Closes connection
         if db_conn.is_connected():
